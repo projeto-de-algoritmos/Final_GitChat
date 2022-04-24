@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Text } from '@chakra-ui/react';
+import { Flex, Input, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { useChat } from 'src/context/ChatContext';
 import { compress, decompress } from '../../utils/huffman';
@@ -22,19 +22,9 @@ export const Chat = ({ session }) => {
     });
   };
 
-  const shareLocalization = async (localization) => {
-    await fetch('/api/share-localization', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(localization),
-    });
-  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex flexDirection="column" background="gray.50" maxH="100vh" height="calc(100% - 40px)" overflowY="scroll">
-        <Button onClick={async () => await shareLocalization(session?.user?.locale)}>Compartilhar distancia</Button>
         {chat.map((message, index) => {
           return (
             <Flex flexDirection="column" key={index} padding="10" paddingTop="0">

@@ -2,22 +2,20 @@ import { Button, Flex, Input, Select } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { signIn } from 'next-auth/react';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
 import capitals from '../../utils/capitals.json';
 export const SignInForm = () => {
   const { handleSubmit, register } = useForm();
-  const router = useRouter();
   const onSubmit = async (credentials) => {
     // build message obj
     try {
       const response = await signIn('credentials', {
         ...credentials,
-        redirect: false, // prevents page reload on error
+        redirect: true,
+        callbackUrl: '/chat',
       });
 
       if (response.ok) {
         toast.success('Seja bem vindo');
-        router.push('/chat');
       }
     } catch (error) {
       console.log(error);
