@@ -11,7 +11,7 @@ export const BaseLayout = ({ children }) => {
     //   </S.Main>
     // </Grid>
 
-    <Grid templateColumns="300px 1fr" height="100vh">
+    <Grid templateColumns="400px 1fr" height="100vh">
       <Sidebar />
       {children}
     </Grid>

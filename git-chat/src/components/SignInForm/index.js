@@ -1,32 +1,24 @@
-import { useState } from 'react';
-import { Box, Button, Flex, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
+import { Button, Flex, Input, Select } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { Graph } from 'src/utils/graph';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { signIn } from 'next-auth/react';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import capitals from '../../utils/capitals.json';
 export const SignInForm = () => {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-    watch,
-  } = useForm();
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
-
-  const graph = new Graph();
-
+  const { handleSubmit, register } = useForm();
+  const router = useRouter();
   const onSubmit = async (credentials) => {
     // build message obj
-
     try {
       const response = await signIn('credentials', {
         ...credentials,
         redirect: false, // prevents page reload on error
       });
 
-      if (response.ok) toast.success('Seja bem vindo');
+      if (response.ok) {
+        toast.success('Seja bem vindo');
+        router.push('/chat');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -40,22 +32,14 @@ export const SignInForm = () => {
           placeholder="Username"
           _placeholder={{ color: 'inherit' }}
         />
-
-        <InputGroup size="md">
-          <Input
-            {...register('password')}
-            color="whatsapp.500"
-            type={show ? 'text' : 'password'}
-            placeholder="Password"
-            _placeholder={{ color: 'inherit' }}
-          />
-          <InputRightElement width="4.5rem">
-            <Box cursor="pointer" onClick={handleClick}>
-              {show ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
-            </Box>
-          </InputRightElement>
-        </InputGroup>
-        <Button type="submit">Send message</Button>
+        <Select placeholder="Capital do estado" {...register('password')}>
+          {capitals.map((capital) => (
+            <option value={capital} key={capital}>
+              {capital}
+            </option>
+          ))}
+        </Select>
+        <Button type="submit">Entrar</Button>
       </Flex>
     </form>
   );

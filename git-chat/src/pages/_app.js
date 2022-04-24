@@ -2,7 +2,8 @@ import { ChakraProvider, CSSReset } from '@chakra-ui/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SessionProvider } from 'next-auth/react';
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+import { ChartProvider } from 'src/context/ChatContext';
+function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <CSSReset />
@@ -17,8 +18,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         draggable
         pauseOnHover
       />
-      <SessionProvider session={session}>
-        <Component {...pageProps} />
+      <SessionProvider>
+        <ChartProvider session={pageProps.session}>
+          <Component {...pageProps} />
+        </ChartProvider>
       </SessionProvider>
     </ChakraProvider>
   );

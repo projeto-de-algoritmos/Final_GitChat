@@ -1,54 +1,19 @@
-import { useEffect, useState } from 'react';
-import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
+import { Button, Flex, Input, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import SocketIOClient from 'socket.io-client';
-import { Graph } from 'src/utils/graph';
-import { useSession } from 'next-auth/react';
+import { useChat } from 'src/context/ChatContext';
+import { compress, decompress } from '../../utils/huffman';
+export const Chat = ({ session }) => {
+  const { handleSubmit, register } = useForm();
 
-export const Chat = () => {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-    watch,
-  } = useForm();
-  const { data: session } = useSession();
-  const [connected, setConnected] = useState(false);
-  const [chat, setChat] = useState([]);
-  useEffect(() => {
-    // connect to socket server
-    const socket = SocketIOClient.connect(process.env.BASE_URL, {
-      path: '/api/socket',
-    });
-
-    // log socket connection
-    socket.on('connect', () => {
-      console.log('SOCKET CONNECTED!', socket.id);
-      setConnected(true);
-    });
-
-    // update chat on new message dispatched
-    socket.on('message', (message) => {
-      chat.push(message);
-      console.log(message);
-      setChat([...chat]);
-    });
-
-    // socket disconnet onUnmount if exists
-    if (socket) return () => socket.disconnect();
-  }, []);
-
-  const graph = new Graph();
-
+  const { chat, connected, isDecoded } = useChat();
   const onSubmit = async (data) => {
-    // build message obj
     const message = {
       user: session?.user?.login,
-      msg: data.msg,
+      msg: compress(data.msg).compressed,
+      tree: compress(data.msg).tree,
     };
-    graph.addVertex(data.msg);
 
-    const resp = await fetch('/api/chat', {
+    await fetch('/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,21 +21,47 @@ export const Chat = () => {
       body: JSON.stringify(message),
     });
   };
+
+  const shareLocalization = async (localization) => {
+    await fetch('/api/share-localization', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(localization),
+    });
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Flex flexDirection="column">
+      <Flex flexDirection="column" background="gray.50" maxH="100vh" height="calc(100% - 40px)" overflowY="scroll">
+        <Button onClick={async () => await shareLocalization(session?.user?.locale)}>Compartilhar distancia</Button>
         {chat.map((message, index) => {
           return (
-            <Flex flexDirection="column" key={index}>
-              <Text color={session?.user?.login === message.user ? 'red.100' : 'blue.200'}>{message.user}</Text>
-              <Text>{message.msg}</Text>
+            <Flex flexDirection="column" key={index} padding="10" paddingTop="0">
+              <Flex flexDirection="column" marginLeft={session?.user?.login === message.user ? 'auto' : '0'}>
+                {session?.user?.login !== message.user && <Text fontSize="smaller">{message.user}</Text>}
+                <Text
+                  minWidth="50px"
+                  bg={session?.user?.login === message.user ? 'whatsapp.100' : 'white'}
+                  width="fit-content"
+                  borderRadius="md"
+                  padding="1"
+                >
+                  {isDecoded ? decompress(message.msg, message.tree) : message.msg}
+                </Text>
+              </Flex>
             </Flex>
           );
         })}
-      </Flex>
-      <Flex flexDirection="column" boxShadow="base" width="400px" padding="10" gap="1rem">
-        <Input {...register('msg')} color="teal" placeholder="Type a message" _placeholder={{ color: 'inherit' }} />
-        <Button type="submit">Send message</Button>
+        <Flex position="fixed" bottom="0" width="100%">
+          <Input
+            autoComplete="off"
+            {...register('msg')}
+            color="black.400"
+            placeholder={connected ? 'Mensagem' : 'Conectando...'}
+            _placeholder={{ color: 'gray.400' }}
+          />
+        </Flex>
       </Flex>
     </form>
   );

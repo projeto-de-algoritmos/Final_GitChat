@@ -13,14 +13,14 @@ export default async function auth(req, res) {
             type: 'text',
             placeholder: 'username',
           },
-          password: { label: 'Password', type: 'password' },
+          password: { label: 'Locale', type: 'text' },
         },
         async authorize(credentials) {
           try {
             // Any object returned will be saved in `user` property of the JWT4
 
             const response = await api.get(`users/${credentials.username}`);
-            console.log(response);
+            response.data.locale = credentials.password;
             return response.data;
 
             // If you return null or false then the credentials will be rejected
