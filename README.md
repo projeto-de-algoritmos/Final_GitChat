@@ -16,25 +16,25 @@ Além disso, o projeto faz a compressão da mensagem enviada utilizando o **algo
 
 ## Screenshots
 ## Tela inicial
-<img src="./screenshots/shot1.png" alt="drawing" width="850"/>
+<img src="./screenshots/inicial.png" alt="drawing" width="850"/>
 
 ## Compressão de mensagem (Huffman)
 ### Mensagem normal
-<img src="./screenshots/shot2.png" alt="drawing" width="600"/>
+<img src="./screenshots/descomprimida.png" alt="drawing" width="600"/>
 
 ### Mensagem comprimida
-<img src="./screenshots/shot3.png" alt="drawing" width="600"/>
+<img src="./screenshots/comprimida.png" alt="drawing" width="600"/>
 
 
 ## Compartilhando localização (Dijkstra)
 ### Lucas compartilhando com Antonio
-<img src="./screenshots/shot4.png" alt="drawing" width="600"/>
+<img src="./screenshots/lucasAntonio.png" alt="drawing" width="600"/>
 
 ### Antonio compartilhando com Lucas
-<img src="./screenshots/shot5.png" alt="drawing" width="600"/>
+<img src="./screenshots/antonioLucas.png" alt="drawing" width="600"/>
 
 ## 3º pessoa no chat
-<img src="./screenshots/shot6.png" alt="drawing" width="850"/>
+<img src="./screenshots/maisIntegrantes.png" alt="drawing" width="850"/>
 
 <!--![shot6](./screenshots/shot6.png)-->
 
@@ -42,7 +42,7 @@ Além disso, o projeto faz a compressão da mensagem enviada utilizando o **algo
 **Linguagem**: Java Script<br>
 **Framework**: React JS<br>
 **Pré-requisitos:**
-* ter instalado na máquina **yarn** ou **npm**.
+* ter instalado na máquina **yarn**.
 
 ## Uso 
 * Após clonar o repositório em sua máquina e acessa-lo:
@@ -54,17 +54,9 @@ yarn install
 
 yarn dev
 ```
-ou 
-```
-cd git-chat
-
-npm install
-
-npm dev
-```
 
 ## Outros 
-Esse projeto utiliza o nextjs para rodar o backend do projeto, portanto deve ser utilizado o comando *yarn dev* em vez de *yarn start*.
+Para o bom funcionamento do projeto, recomendamos que abra sempre uma **nova janela anônima** para adicionar um novo integrante no chat.
 
 
 
