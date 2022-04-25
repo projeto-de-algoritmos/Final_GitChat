@@ -20,6 +20,7 @@ export const Chat = ({ session }) => {
       },
       body: JSON.stringify(message),
     });
+
   };
 
   return (
