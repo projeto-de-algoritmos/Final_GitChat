@@ -17,7 +17,7 @@ Além disso, o projeto faz a compressão da mensagem enviada utilizando o **algo
 ## Screenshots
 ## Tela inicial
 ![shot1](./screenshots/shot1.png)
-<img src="./screenshots/shot1.png" alt="drawing" width="600"/>
+<img src="./screenshots/shot1.png" alt="drawing" width="850"/>
 
 ## Compressão de mensagem (Huffman)
 Mensagem normal | Mensagem comprimida
@@ -25,10 +25,10 @@ Mensagem normal | Mensagem comprimida
 ![shot2](./screenshots/shot2.png)  |  ![shot3](./screenshots/shot3.png)
 
 ### Mensagem normal
-<img src="./screenshots/shot2.png" alt="drawing" width="450"/>
+<img src="./screenshots/shot2.png" alt="drawing" width="600"/>
 
 ### Mensagem comprimida
-<img src="./screenshots/shot3.png" alt="drawing" width="450"/>
+<img src="./screenshots/shot3.png" alt="drawing" width="600"/>
 
 
 ## Compartilhando localização (Dijkstra)
@@ -37,13 +37,13 @@ Mensagem normal | Mensagem comprimida
 ![shot4](./screenshots/shot4.png)  |  ![shot5](./screenshots/shot5.png)
 
 ### Lucas compartilhando com Antonio
-<img src="./screenshots/shot4.png" alt="drawing" width="450"/>
+<img src="./screenshots/shot4.png" alt="drawing" width="600"/>
 
 ### Antonio compartilhando com Lucas
-<img src="./screenshots/shot5.png" alt="drawing" width="450"/>
+<img src="./screenshots/shot5.png" alt="drawing" width="600"/>
 
 ## 3º pessoa no chat
-<img src="./screenshots/shot6.png" alt="drawing" width="600"/>
+<img src="./screenshots/shot6.png" alt="drawing" width="850"/>
 
 <!--![shot6](./screenshots/shot6.png)-->
 
