@@ -1,4 +1,8 @@
-import { Avatar, Button, Flex, WrapItem } from '@chakra-ui/react';
+import { Avatar, Button, Flex, WrapItem, Image, Text } from '@chakra-ui/react';
+import {
+  ListItem,
+  UnorderedList,
+} from '@chakra-ui/react'
 import { useSession } from 'next-auth/react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useChat } from 'src/context/ChatContext';
@@ -22,7 +26,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <Flex bg="gray.200" width="100%">
+    <Flex bg="gray.200" width="100%" flexDirection='column'>
       <Flex bg="white" height="fit-content" width="100%" padding="3" justify="space-between" alignItems="center">
         <WrapItem>
           <Avatar name="usuário logado" src={session?.user?.avatar_url} />
@@ -33,6 +37,19 @@ export const Sidebar = () => {
           <AiOutlineEye onClick={() => handleDecoded()} size={30} />
         )}
         <Button onClick={async () => await shareLocalization(session?.user?.locale)}>Compartilhar distancia</Button>
+      </Flex>
+      <Flex alignItems='center'justifyContent='center'>
+        <Image src={'images/logo2.png'} alt='logo' width='15rem'/>
+      </Flex>
+      <Flex alignItems='center'justifyContent='center' flexDirection='column' padding='8' height='100%'>
+        
+        <Flex justifyContent='flex-end' alignItems='flex-end' background='white' padding='3' borderRadius='5'>
+          <UnorderedList>
+            <ListItem>Envie mensagens comprimidadas!</ListItem>
+            <ListItem>Descomprima suas mensagens!</ListItem>
+            <ListItem>Compartilhe sua localização com os integrantes do chat!</ListItem>
+          </UnorderedList>
+        </Flex>
       </Flex>
     </Flex>
   );
