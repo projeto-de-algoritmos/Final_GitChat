@@ -1,44 +1,63 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# Git Chat 
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 6<br>
+**Conteúdo da Disciplina**: Trabalho Final<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 19/0044799  |  Antônio Ferreira de Castro Neto |
+| 18/0125885  |  Lucas Melo dos Santos |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+O projeto Git Chat se trata de uma plataforma de chat utilizando um WebSocket, na qual o usuário pode acessar com seu *username* do Github. A partir disso, o usuário pode interagir com outras pessoas que acessarem o chat, mandando mensagens ou compartilhando a sua localização. 
+
+Além disso, o projeto faz a compressão da mensagem enviada utilizando o **algoritmo ambicioso de Huffman**, e também calcula a distância entre os integrantes do chat utilizando **grafos** e o algoritmo de **Dijkstra**.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+## Tela inicial
+![shot1](./screenshots/shot1.png)
+
+## Compressão de mensagem (Huffman)
+Mensagem normal | Mensagem comprimida
+:-----------------------:|:-----------------------:
+![shot2](./screenshots/shot2.png)  |  ![shot3](./screenshots/shot3.png)
+
+## Compartilhando localização (Dijkstra)
+Mensagem normal | Mensagem comprimida
+:-----------------------:|:-----------------------:
+![shot4](./screenshots/shot4.png)  |  ![shot5](./screenshots/shot5.png)
+
+## 3º pessoa no chat
+![shot6](./screenshots/shot6.png)
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Linguagem**: Java Script<br>
+**Framework**: React JS<br>
+**Pré-requisitos:**
+* ter instalado na máquina **yarn** ou **npm**.
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+* Após clonar o repositório em sua máquina e acessa-lo:
+
+```
+cd git-chat
+
+yarn install
+
+yarn dev
+```
+ou 
+```
+cd git-chat
+
+npm install
+
+npm dev
+```
 
 ## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+Esse projeto utiliza o nextjs para rodar o backend do projeto, portanto deve ser utilizado o comando *yarn dev* em vez de *yarn start*.
 
 
 
