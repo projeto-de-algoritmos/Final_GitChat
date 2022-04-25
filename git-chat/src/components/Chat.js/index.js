@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useChat } from 'src/context/ChatContext';
 import { compress, decompress } from '../../utils/huffman';
 export const Chat = ({ session }) => {
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, reset } = useForm();
 
   const { chat, connected, isDecoded } = useChat();
   const onSubmit = async (data) => {
@@ -20,6 +20,8 @@ export const Chat = ({ session }) => {
       },
       body: JSON.stringify(message),
     });
+
+    reset()
 
   };
 
