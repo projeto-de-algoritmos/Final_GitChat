@@ -40,7 +40,7 @@ Além disso, o projeto faz a compressão da mensagem enviada utilizando o **algo
 
 ## Instalação 
 **Linguagem**: Java Script<br>
-**Framework**: React JS<br>
+**Framework**: Next JS<br>
 **Pré-requisitos:**
 * ter instalado na máquina **yarn**.
 
